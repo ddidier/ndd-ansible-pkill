@@ -2,18 +2,10 @@
 
 Kill process by name.
 
-## Requirements
-
-None
-
 ## Role Variables
 
-- pkill_name (required): the name of the process(es) to send the signal to (Extended Regular Expression).
-- pkill_signal (defaults to SIGTERM): the signal to send.
-
-## Dependencies
-
-None
+- `pkill_name` (required): the name of the process(es) to send the signal to (Extended Regular Expression).
+- `pkill_signal` (defaults to `SIGTERM`): the signal to send.
 
 ## Example Playbook
 
