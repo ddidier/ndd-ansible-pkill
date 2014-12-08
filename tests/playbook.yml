@@ -1,0 +1,23 @@
+---
+
+#
+# Test Playbook
+#
+
+- hosts: localhost
+  sudo: true
+  pre_tasks:
+    - name: create process 1
+      action: shell sleep 100&
+    - name: create process 2
+      action: shell sleep 100&
+  roles:
+    - { role: pkill, pkill_name: 'sleep', pkill_signal: 'SIGKILL' }
+  # - { role: pkill, pkill_name: 'invalid' }
+  post_tasks:
+    - name: finding 'sleep' process
+      shell: ps aux | grep sleep
+      register: sleep_processes
+    - name: testing presence of 'sleep' process
+      fail: msg="FAILURE! At least one 'sleep' process was found"
+      when: sleep_processes.stdout  | search(" sleep 100")

@@ -1,0 +1,8 @@
+---
+
+# ------------------------------------------------------------------------------
+# Tasks for PKill
+# ------------------------------------------------------------------------------
+
+- name: Kill the process(es) named '{{pkill_name}}' with '{{pkill_signal}}'
+  action: shell pkill -{{pkill_signal}} {{pkill_name}}
